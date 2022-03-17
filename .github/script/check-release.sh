@@ -9,7 +9,7 @@ changelog_file='CHANGELOG.md'
 ret=0
 
 file_tag1=$(grep '^version: ' $file1 | cut -d ':' -f 2 | tr -d ' ')
-file_tag2=$(grep -o "[0-9\.]" $file3 | tr -d '[:space:]')
+file_tag2=$(grep -o "[0-9\.]" $file2 | tr -d '[:space:]')
 if [ "$current_tag" != "$file_tag1" ] || [ "$current_tag" != "$file_tag2" ]; then
   echo "Error: the current tag does not match the version in package file(s)."
   echo "$file1: found $file_tag1 - expected $current_tag"
