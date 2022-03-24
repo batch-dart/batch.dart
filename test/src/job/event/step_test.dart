@@ -7,8 +7,8 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/step.dart';
-import 'package:batch/src/job/entity/task.dart';
+import 'package:batch/src/job/event/step.dart';
+import 'package:batch/src/job/event/task.dart';
 
 void main() {
   test('Test Step with name parameter', () async {

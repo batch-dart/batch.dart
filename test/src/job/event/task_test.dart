@@ -12,7 +12,7 @@ import 'package:batch/src/batch_status.dart';
 import 'package:batch/src/job/config/retry_configuration.dart';
 import 'package:batch/src/job/config/skip_configuration.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/task.dart';
+import 'package:batch/src/job/event/task.dart';
 import 'package:batch/src/job/execution.dart';
 import 'package:batch/src/log/log_configuration.dart';
 import 'package:batch/src/log/logger.dart';

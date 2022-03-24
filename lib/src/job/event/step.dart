@@ -9,12 +9,12 @@ import 'dart:async';
 import 'package:batch/src/job/config/retry_configuration.dart';
 import 'package:batch/src/job/config/skip_configuration.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/entity.dart';
-import 'package:batch/src/job/entity/task.dart';
+import 'package:batch/src/job/event/event.dart';
+import 'package:batch/src/job/event/task.dart';
 import 'package:batch/src/job/task/shutdown_task.dart';
 
 /// This class represents the processing of each step that constitutes a job in batch processing.
-class Step extends Entity<Step> {
+class Step extends Event<Step> {
   /// Returns the new instance of [Step].
   Step({
     required String name,

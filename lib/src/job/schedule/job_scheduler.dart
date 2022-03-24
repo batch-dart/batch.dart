@@ -11,7 +11,7 @@ import 'package:clock/clock.dart';
 // Project imports:
 import 'package:batch/src/batch_instance.dart';
 import 'package:batch/src/batch_status.dart';
-import 'package:batch/src/job/entity/job.dart';
+import 'package:batch/src/job/event/job.dart';
 import 'package:batch/src/job/launcher/job_launcher.dart';
 import 'package:batch/src/job/schedule/model/schedule.dart';
 import 'package:batch/src/job/schedule/scheduled_task.dart';

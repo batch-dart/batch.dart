@@ -8,7 +8,7 @@ import 'package:batch/src/batch_status.dart';
 import 'package:batch/src/job/config/retry_configuration.dart';
 import 'package:batch/src/job/config/skip_configuration.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/entity.dart';
+import 'package:batch/src/job/event/event.dart';
 import 'package:batch/src/log/logger_provider.dart';
 
 /// This abstract class represents the smallest unit of processing that is
@@ -16,7 +16,7 @@ import 'package:batch/src/log/logger_provider.dart';
 ///
 /// The processing of each step of the job should be defined by overriding
 /// [execute] in a class that inherits from this [Task].
-abstract class Task<T extends Task<T>> extends Entity<Task> {
+abstract class Task<T extends Task<T>> extends Event<Task> {
   /// Returns the new instance of [Task].
   Task({
     Function(ExecutionContext context)? onStarted,

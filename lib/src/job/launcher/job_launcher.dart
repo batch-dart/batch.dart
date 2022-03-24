@@ -4,7 +4,7 @@
 
 // Project imports:
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/job.dart';
+import 'package:batch/src/job/event/job.dart';
 import 'package:batch/src/job/launcher/launcher.dart';
 import 'package:batch/src/job/launcher/step_launcher.dart';
 
@@ -21,7 +21,7 @@ class JobLauncher extends Launcher<Job> {
 
   @override
   Future<void> run() async => await super.executeRecursively(
-        entity: _job,
+        event: _job,
         execute: (job) async {
           await StepLauncher(
             context: context,

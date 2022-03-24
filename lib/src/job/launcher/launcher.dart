@@ -7,11 +7,11 @@ import 'package:batch/src/batch_instance.dart';
 import 'package:batch/src/job/branch/branch_status.dart';
 import 'package:batch/src/job/context/context_support.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/entity.dart';
+import 'package:batch/src/job/event/event.dart';
 import 'package:batch/src/log/logger_provider.dart' as log;
 import 'package:batch/src/runner.dart';
 
-abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
+abstract class Launcher<T extends Event<T>> extends ContextSupport<T>
     implements Runner {
   /// Returns the new instance of [Launcher].
   Launcher({
@@ -22,39 +22,39 @@ abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
   int _retryCount = 0;
 
   Future<bool> executeRecursively({
-    required T entity,
-    required Function(dynamic entity) execute,
+    required T event,
+    required Function(dynamic event) execute,
     bool retry = false,
   }) async {
     if (!retry) {
-      await entity.onStarted?.call(context);
+      await event.onStarted?.call(context);
     }
 
-    super.startNewExecution(name: entity.name, retry: retry);
+    super.startNewExecution(name: event.name, retry: retry);
 
-    if (!await entity.shouldLaunch()) {
-      log.info('Skipped ${entity.name} because the precondition is not met.');
+    if (!await event.shouldLaunch()) {
+      log.info('Skipped ${event.name} because the precondition is not met.');
       super.finishExecutionAsSkipped(retry: retry);
       return true;
     }
 
     if (BatchInstance.instance.isShuttingDown) {
       log.info(
-          'Skipped ${entity.name} because this batch application is shutting down.');
+          'Skipped ${event.name} because this batch application is shutting down.');
       super.finishExecutionAsSkipped(retry: retry);
       return true;
     }
 
     try {
-      await execute.call(entity);
-      await entity.onSucceeded?.call(context);
+      await execute.call(event);
+      await event.onSucceeded?.call(context);
 
       if (BatchInstance.instance.isRunning) {
-        if (entity.hasBranch) {
-          for (final branch in entity.branches) {
+        if (event.hasBranch) {
+          for (final branch in event.branches) {
             if (branch.on == super.branchStatus ||
                 branch.on == BranchStatus.completed) {
-              await executeRecursively(entity: branch.to, execute: execute);
+              await executeRecursively(event: branch.to, execute: execute);
             }
           }
         }
@@ -65,14 +65,14 @@ abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
 
       return true;
     } catch (error, stackTrace) {
-      await entity.onError?.call(context, error, stackTrace);
+      await event.onError?.call(context, error, stackTrace);
 
       //! Do not skip and retry if it is an Error.
       //! Only Exception can be skipped and retried.
       if (error is Exception) {
-        if (entity.hasSkipPolicy && entity.skipPolicy!.shouldSkip(error)) {
+        if (event.hasSkipPolicy && event.skipPolicy!.shouldSkip(error)) {
           log.warn(
-            'An exception is detected on Entity [name=${entity.name}] but processing continues because it can be skipped',
+            'An exception is detected on Event [name=${event.name}] but processing continues because it can be skipped',
             error,
             stackTrace,
           );
@@ -80,11 +80,11 @@ abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
           super.finishExecutionAsSkipped(retry: retry);
 
           return true;
-        } else if (entity.hasRetryPolicy &&
-            entity.retryPolicy!.shouldRetry(error)) {
-          if (entity.retryPolicy!.isExceeded(_retryCount)) {
+        } else if (event.hasRetryPolicy &&
+            event.retryPolicy!.shouldRetry(error)) {
+          if (event.retryPolicy!.isExceeded(_retryCount)) {
             log.error(
-              'The maximum number of retry attempts has been reached on Entity [name=${entity.name}]',
+              'The maximum number of retry attempts has been reached on Event [name=${event.name}]',
               error,
               stackTrace,
             );
@@ -93,16 +93,16 @@ abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
           }
 
           log.warn(
-            'An exception is detected on Entity [name=${entity.name}] but processing retries',
+            'An exception is detected on Event [name=${event.name}] but processing retries',
             error,
             stackTrace,
           );
 
-          await entity.retryPolicy!.wait();
+          await event.retryPolicy!.wait();
           _retryCount++;
 
           if (await executeRecursively(
-            entity: entity,
+            event: event,
             execute: execute,
             retry: true,
           )) {
@@ -118,7 +118,7 @@ abstract class Launcher<T extends Entity<T>> extends ContextSupport<T>
       }
     } finally {
       if (!retry) {
-        await entity.onCompleted?.call(context);
+        await event.onCompleted?.call(context);
       }
     }
 

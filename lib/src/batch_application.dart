@@ -6,7 +6,7 @@
 import 'package:batch/src/banner/banner_printer.dart';
 import 'package:batch/src/banner/default_banner.dart';
 import 'package:batch/src/diagnostics/boot_diagnostics.dart';
-import 'package:batch/src/job/entity/job.dart';
+import 'package:batch/src/job/event/job.dart';
 import 'package:batch/src/job/parameter/shared_parameters.dart';
 import 'package:batch/src/job/schedule/job_scheduler.dart';
 import 'package:batch/src/log/log_configuration.dart';

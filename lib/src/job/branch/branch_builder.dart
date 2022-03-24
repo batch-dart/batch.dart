@@ -5,9 +5,9 @@
 // Project imports:
 import 'package:batch/src/job/branch/branch.dart';
 import 'package:batch/src/job/branch/branch_status.dart';
-import 'package:batch/src/job/entity/entity.dart';
+import 'package:batch/src/job/event/event.dart';
 
-class BranchBuilder<T extends Entity<T>> {
+class BranchBuilder<T extends Event<T>> {
   /// The status as a basis for this branching
   BranchStatus? _on;
 

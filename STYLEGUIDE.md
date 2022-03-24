@@ -90,7 +90,7 @@ import 'package:batch/src/batch_instance.dart';
 import 'package:batch/src/job/branch/branch_status.dart';
 import 'package:batch/src/job/context/context_support.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/entity.dart';
+import 'package:batch/src/job/event/event.dart';
 import 'package:batch/src/job/process_status.dart';
 import 'package:batch/src/log/logger_provider.dart';
 import 'package:batch/src/runner.dart';

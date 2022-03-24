@@ -6,9 +6,9 @@
 export 'package:batch/src/batch_application.dart';
 
 // Job features
-export 'package:batch/src/job/entity/job.dart';
-export 'package:batch/src/job/entity/step.dart';
-export 'package:batch/src/job/entity/task.dart';
+export 'package:batch/src/job/event/job.dart';
+export 'package:batch/src/job/event/step.dart';
+export 'package:batch/src/job/event/task.dart';
 export 'package:batch/src/job/context/execution_context.dart';
 export 'package:batch/src/job/execution.dart';
 export 'package:batch/src/job/schedule/parser/cron_parser.dart';

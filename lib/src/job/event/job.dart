@@ -7,8 +7,8 @@ import 'dart:async';
 
 // Project imports:
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/entity.dart';
-import 'package:batch/src/job/entity/step.dart';
+import 'package:batch/src/job/event/event.dart';
+import 'package:batch/src/job/event/step.dart';
 import 'package:batch/src/job/schedule/parser/schedule_parser.dart';
 
 /// This class represents a job which is the largest unit in batch execution processing.
@@ -16,7 +16,7 @@ import 'package:batch/src/job/schedule/parser/schedule_parser.dart';
 /// Pass a unique [name] and a [cron] that represents the execution schedule
 /// to the constructor when initializing [Job]. And then use the [nextStep] method
 /// to add the [Step] to be executed.
-class Job extends Entity<Job> {
+class Job extends Event<Job> {
   /// Returns the new instance of [Job].
   Job({
     required String name,

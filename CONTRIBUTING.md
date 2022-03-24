@@ -110,7 +110,7 @@ Examples of PR titles:
 - fix: Avoid execute something in `BatchDiagnosis`
 - docs: Add a example
 - docs: Improve the README
-- test: Add test for `Entity.dart`
+- test: Add test for `Event.dart`
 - refactor: Optimize the structure of job scheduling
 
 [github issue]: https://github.com/batch-dart/batch.dart/issues/new

@@ -4,9 +4,9 @@
 
 // Project imports:
 import 'package:batch/src/job/branch/branch_status.dart';
-import 'package:batch/src/job/entity/entity.dart';
+import 'package:batch/src/job/event/event.dart';
 
-class Branch<T extends Entity<T>> {
+class Branch<T extends Event<T>> {
   /// Returns the new instance of [Branch].
   Branch({
     required this.on,

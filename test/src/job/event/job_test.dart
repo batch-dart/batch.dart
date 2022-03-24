@@ -6,8 +6,8 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:batch/src/job/entity/job.dart';
-import 'package:batch/src/job/entity/step.dart';
+import 'package:batch/src/job/event/job.dart';
+import 'package:batch/src/job/event/step.dart';
 import 'package:batch/src/job/schedule/parser/cron_parser.dart';
 
 void main() {

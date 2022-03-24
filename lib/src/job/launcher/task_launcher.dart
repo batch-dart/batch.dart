@@ -4,7 +4,7 @@
 
 // Project imports:
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/task.dart';
+import 'package:batch/src/job/event/task.dart';
 import 'package:batch/src/job/launcher/launcher.dart';
 
 class TaskLauncher extends Launcher<Task> {
@@ -22,7 +22,7 @@ class TaskLauncher extends Launcher<Task> {
   Future<void> run() async {
     for (final task in _tasks) {
       await super.executeRecursively(
-        entity: task,
+        event: task,
         execute: (task) async => await task.execute(context),
       );
     }

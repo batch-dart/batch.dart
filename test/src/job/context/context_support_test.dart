@@ -9,9 +9,9 @@ import 'package:test/test.dart';
 import 'package:batch/src/job/branch/branch_status.dart';
 import 'package:batch/src/job/context/context_support.dart';
 import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/entity/job.dart';
-import 'package:batch/src/job/entity/step.dart';
-import 'package:batch/src/job/entity/task.dart';
+import 'package:batch/src/job/event/job.dart';
+import 'package:batch/src/job/event/step.dart';
+import 'package:batch/src/job/event/task.dart';
 import 'package:batch/src/log/log_configuration.dart';
 import 'package:batch/src/log/logger.dart';
 

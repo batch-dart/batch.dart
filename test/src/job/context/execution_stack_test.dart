@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:batch/src/job/context/execution_stack.dart';
-import 'package:batch/src/job/entity/job.dart';
+import 'package:batch/src/job/event/job.dart';
 import 'package:batch/src/job/execution.dart';
 
 void main() {

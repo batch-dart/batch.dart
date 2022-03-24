@@ -5,9 +5,9 @@
 // Project imports:
 import 'package:batch/src/diagnostics/name_relation.dart';
 import 'package:batch/src/diagnostics/name_relations.dart';
-import 'package:batch/src/job/entity/job.dart';
-import 'package:batch/src/job/entity/step.dart';
 import 'package:batch/src/job/error/unique_constraint_error.dart';
+import 'package:batch/src/job/event/job.dart';
+import 'package:batch/src/job/event/step.dart';
 import 'package:batch/src/log/logger_provider.dart';
 import 'package:batch/src/runner.dart';
 

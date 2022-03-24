@@ -6,15 +6,15 @@
 import 'package:batch/src/job/branch/branch_status.dart';
 import 'package:batch/src/job/context/execution_context.dart';
 import 'package:batch/src/job/context/execution_stack.dart';
-import 'package:batch/src/job/entity/entity.dart';
-import 'package:batch/src/job/entity/job.dart';
-import 'package:batch/src/job/entity/step.dart';
+import 'package:batch/src/job/event/event.dart';
+import 'package:batch/src/job/event/job.dart';
+import 'package:batch/src/job/event/step.dart';
 import 'package:batch/src/job/execution.dart';
 import 'package:batch/src/job/parameter/shared_parameters.dart';
 import 'package:batch/src/job/process_status.dart';
 import 'package:batch/src/log/logger_provider.dart';
 
-abstract class ContextSupport<T extends Entity<T>> {
+abstract class ContextSupport<T extends Event<T>> {
   /// Returns the new instance of [ContextSupport].
   ContextSupport({
     required this.context,

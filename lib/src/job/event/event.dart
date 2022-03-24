@@ -15,10 +15,10 @@ import 'package:batch/src/job/context/execution_context.dart';
 import 'package:batch/src/job/policy/retry_policy.dart';
 import 'package:batch/src/job/policy/skip_policy.dart';
 
-/// This is an abstract class that represents an entity in Job execution.
-abstract class Entity<T extends Entity<T>> {
-  /// Returns the new instance of [Entity].
-  Entity({
+/// This is an abstract class that represents an event in Job execution.
+abstract class Event<T extends Event<T>> {
+  /// Returns the new instance of [Event].
+  Event({
     required this.name,
     this.precondition,
     this.onStarted,
@@ -63,7 +63,7 @@ abstract class Entity<T extends Entity<T>> {
   /// The branches
   final List<Branch<T>> branches = [];
 
-  /// Returns true if this entity can launch, otherwise false.
+  /// Returns true if this event can launch, otherwise false.
   Future<bool> shouldLaunch() async => await precondition?.call() ?? true;
 
   /// Add a branch in case the parent process is succeeded.
@@ -79,13 +79,13 @@ abstract class Entity<T extends Entity<T>> {
   void branchOnCompleted({required T to}) =>
       _addNewBranch(on: BranchStatus.completed, to: to);
 
-  /// Returns true if this entity has branch, otherwise false.
+  /// Returns true if this event has branch, otherwise false.
   bool get hasBranch => branches.isNotEmpty;
 
-  /// Returns true if this entity has skip policy, otherwise false.
+  /// Returns true if this event has skip policy, otherwise false.
   bool get hasSkipPolicy => skipPolicy != null;
 
-  /// Returns true if this entity has retry policy, otherwise false.
+  /// Returns true if this event has retry policy, otherwise false.
   bool get hasRetryPolicy => retryPolicy != null;
 
   /// Adds new [Branch] based on [on] and [to].
