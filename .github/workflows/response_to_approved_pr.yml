@@ -28,7 +28,7 @@ jobs:
     if: github.event.review.state == 'approved' && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.3.0
+      - uses: actions/checkout@v3.4.0
       - uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: do not merge yet
