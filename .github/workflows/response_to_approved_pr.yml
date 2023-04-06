@@ -19,7 +19,7 @@ jobs:
 
       - name: Comment
         if: steps.find-last-comment.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{github.event.pull_request.number}}
           body: 'Congratulations, this pull request has been approved and is ready for merging!'
