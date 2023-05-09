@@ -9,15 +9,15 @@ environment:
 dependencies:
   clock: ^1.1.1
   console_color: ^3.0.0
-  http: ^0.13.5
-  args: ^2.3.2
+  http: ^0.13.6
+  args: ^2.4.1
   async_task: ^1.0.20
-  intl: ^0.18.0
-  meta: ^1.9.0
+  intl: ^0.18.1
+  meta: ^1.9.1
 
 dev_dependencies:
   lints: ^2.0.1
-  test: ^1.23.0
+  test: ^1.24.2
   import_sorter: ^4.6.0
-  dart_code_metrics: ^5.5.1
+  dart_code_metrics: ^5.7.3
   mock_web_server: ^5.0.0-nullsafety.1
